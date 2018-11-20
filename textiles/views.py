@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from textiles.models import Product
+from textiles.models import Product, ProductImage
 from django.views.generic.base import TemplateView
 # Create your views here.
 

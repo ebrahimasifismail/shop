@@ -40,6 +40,10 @@ INSTALLED_APPS = [
 
     #apps
     'textiles',
+
+    #thirdparty
+    'widget_tweaks',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #socialauth
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -67,6 +74,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                #socialauth
+                'social_django.context_processors.backends', 
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -104,6 +115,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -122,4 +142,48 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+LOGOUT_REDIRECT_URL = '/login/'
+
+
+
+LOGIN_EXEMPT_URLS = (
+    r'^logout/$',
+    r'^signup/$',
+    r'^admin/$',
+)
+
+LOGIN_REDIRECT_URL = 'textiles:home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+# 'django.core.mail.backends.smtp.EmailBackend'                 
+# 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = '/login/'
+
+LOGOUT_URL = 'accounts:logout'
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djangocbv@gmail.com'
+EMAIL_HOST_PASSWORD = 'asiftech1234@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEBUG = True
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '334084447371892'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e5e7eca2edc967be76a2fc64397622f2'  # App Secret

@@ -69,3 +69,17 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='product_image', on_delete=models.CASCADE)
     image = models.ImageField()
     label = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.label
+
+
+class SubProduct(models.Model):
+    product = models.ForeignKey(Product, related_name='sub_product', on_delete=models.CASCADE)
+    sub_product_name = models.CharField(max_length=500)
+    material = models.CharField(max_length=100)
+    length = models.DecimalField(max_digits=5, decimal_places=4)
+    color = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.sub_product_name 
