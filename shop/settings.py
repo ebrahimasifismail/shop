@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,11 +41,19 @@ INSTALLED_APPS = [
 
     #apps
     'textiles',
+    'paytm',
 
     #thirdparty
     'widget_tweaks',
-    'social_django',
+    # 'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.instagram',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,11 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 
@@ -185,5 +191,65 @@ EMAIL_USE_TLS = True
 DEBUG = True
 
 
-SOCIAL_AUTH_FACEBOOK_KEY = '334084447371892'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'e5e7eca2edc967be76a2fc64397622f2'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '1137640766400537'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '40d0ef84bfe0121088497738db3cae83'  # App Secret
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.12',
+    }
+}
+
+PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
+PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
+HOST_URL = "http://localhost:8002"
+PAYTM_CALLBACK_URL = "/paytm/response/"
+
+if DEBUG:
+    PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
+    PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
+    PAYTM_WEBSITE = 'WEB_STAGING'
+    HOST_URL = 'http://localhost:8002'
+    '''
+    In sandbox enviornment you can use following wallet credentials to login and make payment.
+    Mobile Number : 7777777777
+    Password : Paytm12345
+    This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
+    '''
+# PAYTM_MERCHANT_KEY = "FVSxKW32751095468634"
+# PAYTM_MERCHANT_ID = "Vu23quBJkVY5RXJJ"
+# HOST_URL = "http://localhost:8001"
+# PAYTM_CALLBACK_URL = "/paytm/response/"
+
+# if DEBUG:
+#     PAYTM_MERCHANT_KEY = "FVSxKW32751095468634"
+#     PAYTM_MERCHANT_ID = "Vu23quBJkVY5RXJJ"
+#     PAYTM_WEBSITE = 'WEB_STAGING'
+#     HOST_URL = 'http://localhost:8001'
+#     '''
+#     In sandbox enviornment you can use following wallet credentials to login and make payment.
+#     Mobile Number : 7777777777
+#     Password : Paytm12345
+#     This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
+#     '''
+
