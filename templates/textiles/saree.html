@@ -1,0 +1,5 @@
+{% for saree in object_list %}
+
+<h1><a href="{% url 'textiles:saree_detail' saree.id %}">{{saree.product_name}}</a></h1>
+
+{% endfor %}
