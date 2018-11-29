@@ -1,0 +1,5 @@
+<h1>success</h1>
+{% for order in cart %}
+{{order.product.product_name}} -  {{order.product.price}}<a href='{% url "textiles:deleteorder" order.pk %}'>remove</a><br>
+{% endfor %}
+<h3><a href='{% url "paytm:payment" %}'>Checkout - Rs {{total}}</a></h3>

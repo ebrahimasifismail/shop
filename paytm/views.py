@@ -4,9 +4,9 @@ from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
+from django.contrib.auth.models import User
 from . import Checksum
-
+from textiles.models import Order
 
 from paytm.models import PaytmHistory
 # Create your views here.
@@ -20,16 +20,29 @@ def payment(request):
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     get_lang = "/" + get_language() if get_language() else ''
     CALLBACK_URL = settings.HOST_URL + get_lang + settings.PAYTM_CALLBACK_URL
+    
+    user = request.user
+    cust_id = user.username
+    checkout_price=0
+    incart = Order.objects.filter(ordered_by=user, is_active=True)
+    import pdb; pdb.set_trace()
+    for order in incart:    
+        checkout_price += order.product.price
+    
+    total = checkout_price
+    
+    
+    
     # Generating unique temporary ids
     order_id = Checksum.__id_generator__()
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     bill_amount = 100
     if bill_amount:
         data_dict = {
                     'MID':MERCHANT_ID,
                     'ORDER_ID':order_id,
-                    'TXN_AMOUNT': bill_amount,
-                    'CUST_ID':'harish@pickrr.com',
+                    'TXN_AMOUNT': total,
+                    'CUST_ID':cust_id,
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID':'WEB',
