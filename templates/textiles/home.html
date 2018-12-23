@@ -19,9 +19,8 @@
   
   .resCarousel-inner .item .tile div,
   .banner .item div {
-      display: table;
       width: 100%;
-      min-height: 250px;
+      /* min-height: 250px; */
       text-align: center;
       /*box-shadow: 0 1px 1px rgba(0, 0, 0, .1);*/
   }
@@ -32,17 +31,18 @@
       color: white;
   }
   
-  .banner .item div {
+  /* .banner .item div {
       background: url("{% static 'img/true.png'%}") center top no-repeat;
       background-size: cover;
       min-height: 550px;
-  }
+  } */
   
   .item .tile div {
-      background: url("{% static 'img/true.png'%}") center center no-repeat;
+      /* background: url("{% static 'img/true.png'%}") center center no-repeat; */
       background-size: cover;
-      height: 200px;
+      /* height: 200px; */
       color: white;
+      /* min-height: 550px; */
   }
   
   .item div h1 {
@@ -53,7 +53,7 @@
 <link href="{% static 'css/resCarousel.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block body %}
-
+<div class="container-fluid" style="padding-right: 93px; padding-left: 93px;">
 <div id="demo" class="carousel slide" data-ride="carousel">
 
     <!-- Indicators -->
@@ -83,18 +83,33 @@
     <a class="carousel-control-next" href="#demo" data-slide="next">
       <span class="carousel-control-next-icon"></span>
     </a>
-  </div>
+  </div></div>
+  <div id="heading-1" class="container" style="text-align: center; margin: 15px;">
+        <h1> Top Categories </h1>
+    </div>
+
 
 <!--home-->
 <div class="container p8">
   <!-- <h4>data-items="2-3-4-5" data-slide="5" data-speed="900" data-interval="4000" data-load="3" data-animator="lazy"</h4> -->
-  <div class="resCarousel" data-items="2-3-4-5" data-slide="5" data-speed="900" data-interval="4000" data-load="3" data-animator="lazy">
+  <div class="resCarousel" data-items="2-3-4-5" >
       <div class="resCarousel-inner" id="eventLoad">
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>1</h1>
+              <div style="background: url(/static/img/2.png) center center no-repeat; height: 200px; background-size: cover; height: 200px; color: white;" >
+                  <!-- <img src="{% static 'img/true.png'%}" style=" height: 200px; min-height: 550px;" alt="asif"> -->
+                      
+                  </div>
+                  <h3>Title</h3>
+                  <p>asif</p>
+              </div>
+          </div>
+
+          <div class="item">
+              <div class="tile">
+                  <div style="background: url(/static/img/1.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -103,8 +118,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>2</h1>
+                  <div style="background: url(/static/img/3.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -113,8 +128,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>3</h1>
+                  <div style="background: url(/static/img/4.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -123,8 +138,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>4</h1>
+                  <div style="background: url(/static/img/5.png) center center no-repeat; height: 200px; background-size: cover;">
+                     
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -133,8 +148,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>5</h1>
+                  <div style="background: url(/static/img/6.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -143,8 +158,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>6</h1>
+                  <div style="background: url(/static/img/7.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -153,8 +168,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>7</h1>
+                  <div style="background: url(/static/img/8.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -163,8 +178,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>8</h1>
+                  <div style="background: url(/static/img/1.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -173,8 +188,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>9</h1>
+                  <div style="background: url(/static/img/2.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -183,8 +198,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>10</h1>
+                  <div style="background: url(/static/img/3.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -193,8 +208,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>11</h1>
+                  <div style="background: url(/static/img/4.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -203,8 +218,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>12</h1>
+                  <div style="background: url(/static/img/5.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -213,18 +228,8 @@
 
           <div class="item">
               <div class="tile">
-                  <div>
-                      <h1>13</h1>
-                  </div>
-                  <h3>Title</h3>
-                  <p>content</p>
-              </div>
-          </div>
-
-          <div class="item">
-              <div class="tile">
-                  <div>
-                      <h1>14</h1>
+                  <div style="background: url(/static/img/6.png) center center no-repeat; height: 200px; background-size: cover;">
+                      
                   </div>
                   <h3>Title</h3>
                   <p>content</p>
@@ -237,10 +242,330 @@
   </div>
 </div>
 
-<hr>
-  
+
+
+    <div id="heading-1" class="container" style="text-align: center; margin: 15px;">
+        <h1> Top Salwar </h1>
+    </div>
+
+    
+    
+    <!--home-->
+    <div class="container">
+        <!-- <h4>data-items="2-2-2-2" data-slide="2" data-interval="2000" data-speed="600" data-animator="lazy"</h4> -->
+        <div class="resCarousel" data-items="2-2-2-2" >
+            <div class="resCarousel-inner">
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/1.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/2.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                           
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/3.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/4.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/5.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/6.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>6</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/7.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/8.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/1.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>9</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/2.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/3.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/4.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>12</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/5.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>13</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/6.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>14</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class='btn btn-default leftRs'><</button>
+            <button class='btn btn-default rightRs'>></button>
+        </div>
+    </div>
+
+
+        <div id="heading-1" class="container" style="text-align: center; margin: 15px;">
+            <h1> Best Sellers </h1>
+        </div>
+
+    <!--home-->
+    <div class="container p8">
+        <!-- <h4> data-items="2-3-3-3" data-slide="3" data-speed="900" data-animator="lazy"</h4> -->
+        <div class="resCarousel" data-items="2-3-3-3">
+            <div class="resCarousel-inner">
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/1.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>1</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/2.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>2</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/3.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>3</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/4.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>4</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/5.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>5</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/6.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>6</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/7.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>7</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/8.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>8</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/1.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            <h1>9</h1>
+                        </div>
+                        <h3>Title</h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/2.png) center center no-repeat; min-height: 550px; background-size: cover;" >                            
+                            <h1>10</h1>
+                        </div>
+                        <h3></h3>
+                        <p>content</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/3.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>top</h3>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/4.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>blouse</h3>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/5.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>white churidar</h3>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="tile">
+                        <div style="background: url(/static/img/6.png) center center no-repeat; min-height: 550px; background-size: cover;">
+                            
+                        </div>
+                        <h3>black saree</h3>
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+            <button class='btn btn-default leftRs'><</button>
+            <button class='btn btn-default rightRs'>></button>
+        </div>
+    </div>  
+    
+        
+          
+
 
 {% block content %}
+
+
       
 <h1>colour plus</h1>
 
@@ -254,6 +579,10 @@
 </ul>
 
 {% endblock %}
+
+
+
+
 
 {% block script %}
 <script>
