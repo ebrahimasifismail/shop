@@ -46,7 +46,7 @@ def payment(request):
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID':'WEB',
-                    #'CALLBACK_URL':CALLBACK_URL,
+                    'CALLBACK_URL':'http://127.0.0.1:8002/paytm/response/',
                 }
         param_dict = data_dict
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
@@ -56,6 +56,7 @@ def payment(request):
 
 @csrf_exempt
 def response(request):
+    import pdb; pdb.set_trace()
     if request.method == "POST":
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
@@ -64,7 +65,7 @@ def response(request):
         verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
         if verify:
             PaytmHistory.objects.create(user=request.user, **data_dict)
-            return render(request,"paytm/response.html",{"paytm":data_dict})
+            return render(request,"response.html",{"paytm":data_dict})
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

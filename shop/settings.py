@@ -228,8 +228,8 @@ PAYTM_CALLBACK_URL = "/paytm/response/"
 if DEBUG:
     PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
     PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
-    PAYTM_WEBSITE = 'WEB_STAGING'
-    HOST_URL = 'http://localhost:8001'
+    PAYTM_WEBSITE = 'WEBSTAGING'
+    HOST_URL = 'http://localhost:8002'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
