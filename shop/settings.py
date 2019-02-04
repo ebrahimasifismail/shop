@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 from django.utils.translation import ugettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -229,7 +232,7 @@ if DEBUG:
     PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
     PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
     PAYTM_WEBSITE = 'WEBSTAGING'
-    HOST_URL = 'http://localhost:8002'
+    HOST_URL = 'http://localhost:8001'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
@@ -253,3 +256,6 @@ if DEBUG:
 #     This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
 #     '''
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())

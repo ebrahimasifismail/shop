@@ -112,7 +112,6 @@ def payment(request):
     cust_id = user.username
     checkout_price=0
     incart = Order.objects.filter(ordered_by=user, is_active=True)
-    import pdb; pdb.set_trace()
     for order in incart:    
         checkout_price += order.product.price
     
@@ -133,7 +132,7 @@ def payment(request):
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID':'WEB',
-                    'CALLBACK_URL':'http://127.0.0.1:8002/response/',
+                    'CALLBACK_URL':'https://blooming-falls-69988.herokuapp.com/response/',
                 }
         param_dict = data_dict
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
@@ -143,7 +142,6 @@ def payment(request):
 
 @csrf_exempt
 def response(request):
-    import pdb; pdb.set_trace()
     if request.method == "POST":
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
