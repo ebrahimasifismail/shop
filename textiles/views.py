@@ -154,3 +154,6 @@ def response(request):
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)
+
+class DashboardView(TemplateView):
+    template_name = 'textiles/dashboard.html'

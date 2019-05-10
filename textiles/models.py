@@ -15,7 +15,22 @@ class Address(models.Model):
     contact = models.CharField(max_length=10)
     pincode = models.IntegerField()
 
+class Category(models.Model):
+    name = models.CharField(max_length=120)
 
+    def __str__(self):
+        return self.name
+
+class Boutique(models.Model):
+    name = models.CharField(max_length=120)
+    logo = models.ImageField()
+    boutique_id = models.CharField(max_length=120)
+    caption = models.CharField(max_length=500)
+    description = models.CharField(max_length=2000)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     INSTANT = 0
@@ -59,13 +74,14 @@ class Product(models.Model):
         (UNSTICHED, "US"),
         
     )
+    boutique = models.ForeignKey(Boutique, related_name='product_boutique', blank = True, null=True, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=500)
     product_id = models.CharField(max_length=100)
     product_type = models.CharField(max_length=100)
     product_detail = models.CharField(max_length = 5000)
     length = models.DecimalField(max_digits=5, decimal_places=4, blank=True, null=True)
     size = models.CharField(choices=SIZE_CHOICES, max_length=100, null=True, blank=True)
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     color = models.CharField(max_length=50, blank=True, null=True)
     stiched_type = models.CharField(choices=STICHING_CHOICES, max_length=100, null=True, blank=True)
     material = models.CharField(max_length=100)
@@ -137,3 +153,7 @@ class PaytmHistory(models.Model):
 
     def __str__(self):
         return self.STATUS
+
+
+
+    
