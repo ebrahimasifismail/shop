@@ -28,7 +28,8 @@ class IndexList(View):
         return self.queryset
 
     def get(self, request, *args, **kwargs):
-        context = { 'object_list': self.get_queryset }
+        image = ProductImage.objects.get(product=self.queryset[0])
+        context = { 'object_list': self.get_queryset, 'image': image   }
         return render(request, self.template_name, context)
 
 class saree_detail(View):
@@ -42,7 +43,8 @@ class saree_detail(View):
         return obj
     
     def get(self, request, *args, **kwargs):
-        context = { 'saree': self.get_object() }
+        image = ProductImage.objects.get(product=self.get_object())
+        context = { 'saree': self.get_object(), 'image': image }
         # ordered_by = request.user
         # order_id = paytm.Checksum.__id_generator__()
         # product = self.get_object()
@@ -57,23 +59,31 @@ def buy_view(request, pk, **kwargs):
     if id is not None:
         obj = get_object_or_404(Product, id=pk)
     ordered_by = request.user
-    order_id = Checksum.__id_generator__()
+    # order_id = Checksum.__id_generator__()
     product = obj
-    Order.objects.create(ordered_by=ordered_by, order_id=order_id, product=product)
+    Order.objects.create(ordered_by=ordered_by, product=product)
     return redirect('textiles:cart')
         
         
 def cart_view(request, *args, **kwargs):
     user = request.user 
     checkout_price=0
+    # image = ProductImage.objects.get(product=self.get_object())
     incart = Order.objects.filter(ordered_by=user, is_active=True)
-    
+    # request.session['user'] = user
     for order in incart:    
         checkout_price += order.product.price
+        try:
+            image = ProductImage.objects.get(product=order.product)
+        except:
+            pass
     
     total = checkout_price
-
-    return render(request, 'textiles/cart.html', {'cart': incart, 'total': total})
+    try:
+        images = image
+    except:
+        pass
+    return render(request, 'textiles/cart.html', {'cart': incart, 'total': total, 'image': images})
 
 
 class OrderDelete(View):
@@ -107,32 +117,34 @@ def payment(request):
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     get_lang = "/" + get_language() if get_language() else ''
     CALLBACK_URL = settings.HOST_URL + get_lang + settings.PAYTM_CALLBACK_URL
-    
+    # import pdb; pdb.set_trace()
     user = request.user
     cust_id = user.username
     checkout_price=0
+    # Generating unique temporary ids
+    order_id = Checksum.__id_generator__()
     incart = Order.objects.filter(ordered_by=user, is_active=True)
     for order in incart:    
         checkout_price += order.product.price
-    
+        order.order_id = order_id
+        order.save()
     total = checkout_price
     
     
     
-    # Generating unique temporary ids
-    order_id = Checksum.__id_generator__()
+    
     # import pdb; pdb.set_trace()
     bill_amount = 100
     if bill_amount:
         data_dict = {
                     'MID':MERCHANT_ID,
                     'ORDER_ID':order_id,
-                    'TXN_AMOUNT': total,
+                    'TXN_AMOUNT': bill_amount,
                     'CUST_ID':cust_id,
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID':'WEB',
-                    'CALLBACK_URL':'https://blooming-falls-69988.herokuapp.com/response/',
+                    'CALLBACK_URL':'http://127.0.0.1:8000/response/',
                 }
         param_dict = data_dict
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
@@ -150,7 +162,12 @@ def response(request):
         verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
         if verify:
             PaytmHistory.objects.create(**data_dict)
+            incart = Order.objects.filter(order_id=data_dict['ORDERID'], is_active=True)
+            for order in incart:
+                order.is_active = False
+                order.save()
             return render(request,"paytm/response.html",{"paytm":data_dict})
+
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

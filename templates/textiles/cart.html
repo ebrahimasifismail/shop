@@ -61,7 +61,7 @@
                             <tr>
                                 <td data-th="Product">
                                     <div class="row">
-                                        <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                                        <div class="col-sm-2 hidden-xs"><img src="{{image.image.url}}" alt="..." class="img-responsive"/></div>
                                         <div class="col-sm-10">
                                             <div class="container-fluid">
                                             <h4 class="nomargin">{{order.product.product_name}}</h4>
@@ -70,14 +70,14 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td data-th="Price">$1.99</td>
+                                <td data-th="Price">Rs {{order.product.price}}</td>
                                 <td data-th="Quantity">
                                     <input type="number" class="form-control text-center" value="1">
                                 </td>
                                 <td data-th="Subtotal" class="text-center">{{order.product.price}}</td>
                                 <td class="actions" data-th="">
                                     <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                                    <button class="btn btn-danger btn-sm"><a href='{% url "textiles:deleteorder" order.pk %}'>remove</a></button>			
+                                    <a class="btn btn-danger btn-sm" href='{% url "textiles:deleteorder" order.pk %}'>remove</a>			
                                 </td>
                             </tr>
                         </tbody>

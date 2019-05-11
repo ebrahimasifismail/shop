@@ -103,7 +103,7 @@ class SubProduct(models.Model):
 
 class Order(models.Model):
     ordered_by = models.ForeignKey(User, related_name='orderer', on_delete=models.CASCADE)
-    order_id = models.CharField(max_length=10)
+    order_id = models.CharField(max_length=10, null=True, blank=True)
     order_date = models.DateTimeField(auto_now_add=True)
     product = models.ForeignKey(Product, related_name='ordered_product', on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=True, null=True)

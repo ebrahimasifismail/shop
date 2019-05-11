@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.instagram',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -225,14 +225,14 @@ SOCIALACCOUNT_PROVIDERS = {
 
 PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
 PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
-HOST_URL = "http://localhost:8001"
+HOST_URL = "http://localhost:8000"
 PAYTM_CALLBACK_URL = "/paytm/response/"
 
 if DEBUG:
     PAYTM_MERCHANT_KEY = "Vu23quBJkVY5RXJJ"
     PAYTM_MERCHANT_ID = "FVSxKW32751095468634"
     PAYTM_WEBSITE = 'WEBSTAGING'
-    HOST_URL = 'http://localhost:8001'
+    HOST_URL = 'http://localhost:8000'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
